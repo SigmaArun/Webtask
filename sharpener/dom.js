@@ -1,3 +1,35 @@
+// GET ELEMENT BY TAG NAME ::::::::::::::::::
+  var items=  document.getElementsByClassName('list-group-item');
+  console.log(items);
+
+  for(var i=0;i<items.length;i++){
+    items[i].style.backgroundColor='yellow';
+
+ } 
+
+ var li = document.getElementsByTagName('li');
+ console.log(li);
+/* 
+ for(var i=0;i<li.length;i++){
+    li[i].style.backgroundColor='purple';
+
+ }  */
+
+ li[4].style.backgroundColor='green';
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
 /*
 console.log(document.title);
 document.title='Arun';
@@ -20,12 +52,15 @@ var additem=document.querySelector('h2');
  additem.style.fontWeight='bold';
  additem.style.color='green';     */
 
- // GET ELEMENT BY CLASS NAME
+ // GET ELEMENT BY CLASS NAME   :::::::::::::::::::::::::::::::::::::
+ /*
  var items = document.getElementsByClassName('list-group-item');
  console.log(items);
  items[2].style.backgroundColor='green';
 
  for(var i=0;i<items.length;i++){
     items[i].style.fontWeight='bold';
-    
- }
+
+ }   */
+
+ 
