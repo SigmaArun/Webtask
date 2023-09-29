@@ -1,3 +1,4 @@
+/*
 console.log(document.title);
 document.title='Arun';
 console.log(document.title);
@@ -17,4 +18,14 @@ header.style.borderBottom= 'solid 4px #000';
 
 var additem=document.querySelector('h2');
  additem.style.fontWeight='bold';
- additem.style.color='green';
+ additem.style.color='green';     */
+
+ // GET ELEMENT BY CLASS NAME
+ var items = document.getElementsByClassName('list-group-item');
+ console.log(items);
+ items[2].style.backgroundColor='green';
+
+ for(var i=0;i<items.length;i++){
+    items[i].style.fontWeight='bold';
+    
+ }
