@@ -65,7 +65,28 @@ var para=document.createElement('p');
  var paratext=document.createTextNode('  Amazing sharpener journey ......');
  //14 append child.
  para.appendChild(paratext);
+
  console.log(para);
  document.body.appendChild(para);
  para.style.color='blue';
 
+ // HELLO WORLD BEFORE ITEM LISTNER.........................................
+  var newtitle=document.createTextNode('HEllo');
+  var container=document.querySelector('header  .container');
+  var h1= document.querySelector('header  h1');
+  container.insertBefore(newtitle, h1);
+// add HEllo before item 1
+const newNode = document.createElement("li");
+const textNode = document.createTextNode("HEllo");
+newNode.appendChild(textNode);
+
+const list = document.getElementById('items');
+list.insertBefore(newNode, list.children[0]);
+newNode.style.color="purple";
+
+
+/*
+
+var newtitle=document.createTextNode('HEllo');
+const list=document.getElementById('#items');
+list.insertBefore(newtitle,list.children[0]);  */
