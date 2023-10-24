@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" onsubmit="signUpForm(event)">
+        <label for="username">Name</label><br>
+        <input type="text" name="username" required><br>
+        <label for="emailId">Email</label><br>
+        <input type="email" name="emailId" required><br>
+        <label for="phone">Phone Number</label><br>
+        <input type="tel" name="phone"><br>
+        <br>
+        <button> Submit</button>
+
+    </form>
+    <script>
+        function signUpForm(event){
+            event.preventDefault();
+            let myObj={
+    
+             name :event.target.username.value,
+             email: event.target.emailId.value,
+             phone :event.target.phone.value
+            };
+
+            let obj=JSON.stringify(myObj);
+            localStorage.setItem("myObj",obj);
+
+          //  let obj_normal=JSON.parse(localStorage.getItem(myObj));
+         //   const name=event.target.username.value;
+          //  const email= event.target.emailId.value;
+          //  const phone=event.target.phone.value;
+
+          //  localStorage.setItem('Name',name);
+           // localStorage.setItem('Email',email);
+          //  localStorage.setItem('phone',phone);
+        }
+    </script>
+</body>
+</html>
