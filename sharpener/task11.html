@@ -6,7 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="" onsubmit="signUpForm(event)">
+    <form  id="addForm" onsubmit="signUpForm(event)">
         <label for="username">Name</label><br>
         <input type="text" name="username" required><br>
         <label for="emailId">Email</label><br>
@@ -14,7 +14,10 @@
         <label for="phone">Phone Number</label><br>
         <input type="tel" name="phone"><br>
         <br>
-        <button> Submit</button>
+        <button> Submit</button><br>
+        <ul class="item">
+           
+        </ul>
 
     </form>
     <script>
@@ -29,6 +32,12 @@
 
             let obj=JSON.stringify(myObj);
             localStorage.setItem("myObj",obj);
+            
+          const node=document.createElement('li');
+          node.innerHTML=JSON.stringify(myObj);
+          document.body.appendChild(node);
+            
+          
 
           //  let obj_normal=JSON.parse(localStorage.getItem(myObj));
          //   const name=event.target.username.value;
