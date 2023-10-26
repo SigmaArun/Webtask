@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form   onsubmit="signUpForm(event)">
+        <label for="username">Name</label><br>
+        <input type="text" name="username" required><br>
+        <label for="emailId">Email</label><br>
+        <input type="email" name="emailId" required><br>
+        <label for="phone">Phone Number</label><br>
+        <input type="tel" name="phone"><br>
+        <br>
+        <button> Submit</button><br>
+        
+    </form>
+    <ul id="listOfItems"></ul>
+
+    <script>
+        function signUpForm(event){
+            event.preventDefault();
+         const  name =event.target.username.value;
+         const    email= event.target.emailId.value;
+          const   phone =event.target.phone.value;
+
+            const obj={    
+             name ,
+             email,
+             phone 
+            };
+
+           // let obj=JSON.stringify(myObj);
+            localStorage.setItem(obj.email,JSON.stringify(obj));
+            showUserOnScrren(obj);
+        }
+
+        function showUserOnScrren(obj){
+            const parentElement=document.getElementById('listOfItems');
+
+            const childElement=document.createElement('li');
+
+            childElement.textContent=obj.name+'-'+obj.email+'-'+obj.phone;
+           // parentElement.appendChild(childElement);
+
+           const deleteButton=document.createElement('input');
+           deleteButton.type="button" 
+           deleteButton.value='Delete'
+           deleteButton.onclick=()=>{
+            localStorage.removeItem(obj.email);
+            parentElement.removeChild(childElement);
+           
+           }
+           childElement.appendChild(deleteButton);
+           parentElement.appendChild(childElement);
+        }
+    </script>
+</body>
+</html>
