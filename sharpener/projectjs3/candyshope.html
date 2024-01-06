@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
+    <style>
+        div{
+            display: flex;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <form action="" onsubmit="addItemForm(event)">
+        <div id="container">
+        <div>
+            <label for="name">CandyName</label><br>
+            <input type="text" name="name" id="candyname">
+        </div>
+        <div>
+            <label for="desc">Description</label><br>
+            <input type="text" name="desc" id="desc" >
+        </div>
+        <div>
+            <label for="price">Price</label><br>
+            <input type="number" name="price" id="price">
+        </div>
+        <div>
+            <label for="quantity">Quantity</label><br>
+            <input type="number" name="quantity" id="quantity">
+        </div>
+         <div>
+               <button>addItem</button>
+        </div>
+    </div>
+    </form>
+    <ul id="listOfItems"></ul>
+    <script>
+          function addItemForm(event){
+            event.preventDefault();
+
+            const candyName=event.target.name.value;
+            const descrip=event.target.desc.value;
+            const pricefor=event.target.price.value;
+            const quantity=event.target.quantity.value;
+
+            const obj={
+                candyName,
+                descrip,
+                pricefor,
+                quantity
+
+               
+            }
+               //localStorage.setItem(obj.candyName,JSON.stringify(obj));
+                 // showUserOnScrren(obj)
+                 axios.post('https://crudcrud.com/api/6d760d3188c749378da0a352135443ac/appointmentData',obj)
+           .then((res)=>{
+            showUserOnScrren(res.data);
+            console.log(res)
+           })
+           .catch((err)=>{
+            document.body.innerHTML=document.body.innerHTML+ "<h4>Something went wrong</h4>"
+            console.log(err);
+           })
+           
+
+          }
+
+          window.addEventListener("DOMContentLoaded",()=>{
+            axios.get('https://crudcrud.com/api/6d760d3188c749378da0a352135443ac/appointmentData')
+            .then((response)=>{
+                console.log(response)
+                for(var i=0;i<response.data.length;i++){
+                    showUserOnScrren(response.data[i])
+                }
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+          
+           })   
+
+          function showUserOnScrren(obj){
+            const parentElement=document.getElementById('listOfItems');
+            const childElement= document.createElement('li');
+            childElement.textContent=obj.candyName+ "-"+ obj.descrip +"-" +obj.pricefor+"-"+obj.quantity +" ";
+            parentElement.appendChild(childElement);
+
+            const buyOneButton=document.createElement('input');
+            buyOneButton.type="button"
+            buyOneButton.value='BuyOne'
+             
+            buyOneButton.onclick=()=>{
+              // obj.quantity-1;
+                   // const updatedName = document.getElementById('candyname').value=obj.candyName;
+                   // const updateddesc = document.getElementById('desc').value=obj.descrip;
+                   // const updatedprice = document.getElementById('price').value=obj.pricefor;
+                   // const updatedquantity = document.getElementById('quantity').value=obj.quantity-1;
+                 if(obj.quantity>0){
+                    obj.quantity -=1;
+                    document.getElementById('quantity').value=obj.quantity-1;
+                
+                    const updatedObj = {
+                        candyName: obj.candyName,
+                        descrip: obj.descrip,
+                        pricefor: obj.pricefor,
+                        quantity: obj.quantity
+                    };
+                    axios.put('https://crudcrud.com/api/6d760d3188c749378da0a352135443ac/appointmentData/' + obj._id, updatedObj)
+            .then((res) => {
+                console.log(res);
+          
+           axios.get('https://crudcrud.com/api/6d760d3188c749378da0a352135443ac/appointmentData')
+                                .then((response) => {
+                                    document.getElementById('listOfItems').innerHTML = '';
+                                    for (let i = 0; i < response.data.length; i++) {
+                                        showUserOnScrren(response.data[i]);
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                });
+                        })
+                        .catch((err) => {
+                            console.error(err);
+                        });
+                };
+            
+            }
+            childElement.appendChild(buyOneButton);
+           // parentElement.appendChild(childElement);
+
+            const buyTwoButton=document.createElement('input');
+            buyTwoButton.type="button"
+            buyTwoButton.value='BuyTwo'
+            buyTwoButton.onclick=()=>{
+                if(obj.quantity>0){
+                    obj.quantity -=2;
+                    document.getElementById('quantity').value=obj.quantity-2;
+                
+                    const updatedObj = {
+                        candyName: obj.candyName,
+                        descrip: obj.descrip,
+                        pricefor: obj.pricefor,
+                        quantity: obj.quantity
+                    };
+                    axios.put('https://crudcrud.com/api/6d760d3188c749378da0a352135443ac/appointmentData/' + obj._id, updatedObj)
+            .then((res) => {
+                console.log(res);
+          
+           axios.get('https://crudcrud.com/api/6d760d3188c749378da0a352135443ac/appointmentData')
+                                .then((response) => {
+                                    document.getElementById('listOfItems').innerHTML = '';
+                                    for (let i = 0; i < response.data.length; i++) {
+                                        showUserOnScrren(response.data[i]);
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                });
+                        })
+                        .catch((err) => {
+                            console.error(err);
+                        });
+                };
+
+            }
+            childElement.appendChild(buyTwoButton);
+           // parentElement.appendChild(childElement);
+
+            const buyThreeButton=document.createElement('input');
+            buyThreeButton.type="button"
+            buyThreeButton.value='BuyThree'
+
+            buyThreeButton.onclick=()=>{
+                if(obj.quantity>0){
+                    obj.quantity -=3;
+                    document.getElementById('quantity').value=obj.quantity-3;
+                
+                    const updatedObj = {
+                        candyName: obj.candyName,
+                        descrip: obj.descrip,
+                        pricefor: obj.pricefor,
+                        quantity: obj.quantity
+                    };
+                    axios.put('https://crudcrud.com/api/6d760d3188c749378da0a352135443ac/appointmentData/' + obj._id, updatedObj)
+            .then((res) => {
+                console.log(res);
+          
+           axios.get('https://crudcrud.com/api/6d760d3188c749378da0a352135443ac/appointmentData')
+                                .then((response) => {
+                                    document.getElementById('listOfItems').innerHTML = '';
+                                    for (let i = 0; i < response.data.length; i++) {
+                                        showUserOnScrren(response.data[i]);
+                                    }
+                                })
+                                .catch((error) => {
+                                    console.log(error);
+                                });
+                        })
+                        .catch((err) => {
+                            console.error(err);
+                        });
+                };
+
+            }
+            childElement.appendChild(buyThreeButton);
+
+          //  parentElement.appendChild(childElement);
+          }
+    </script>
+</body>
+</html>
