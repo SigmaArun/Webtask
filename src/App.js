@@ -1,4 +1,8 @@
-import ExpenseItem from "./components/ExpenseItem";
+
+
+import Expenses from "./components/Expenses";
+
+
 
 function App() {
   const expenses = [
@@ -25,29 +29,17 @@ function App() {
       locationOfExpenditure:" hyderabad"
     },
   ];
-  const keyValue=Object.keys(expenses);
-  const expenseItems = [];
-  for(let i=0;i<keyValue.length;i++)       
-  {
-        const key=keyValue[i];
-        if(key){
-          expenseItems.push(
-              <ExpenseItem
-              id={expenses[key].id}
-              title={expenses[key].title}
-              amount={expenses[key].amount}
-              date={expenses[key].date}
-              location={expenses[key].locationOfExpenditure}
-            ></ExpenseItem>
-          )
-        }
-  }
+ 
   return (
-    <div>
+    
+     
+      <div>
       <h2>Lets get started</h2> 
-     {expenseItems}
-      
-    </div>
+        <Expenses expenses ={expenses} />
+      </div>
+    
+    
+    
   );
 }
 
