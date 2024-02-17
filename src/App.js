@@ -1,11 +1,9 @@
 
-
 import Expenses from "./components/Expenses/Expenses";
-
-
+import ExpenseForm from "./components/Expenses/ExpenseForm"
 
 const App =()=> {
-  const expenses = [
+  const expenses = [  
     {
       id: "e1",
       title: "Toilet Paper",
@@ -31,15 +29,15 @@ const App =()=> {
   ];
  
   return (
-    
      
       <div>
       <h2>Lets get started</h2> 
         <Expenses expenses ={expenses} />
+        <div> <ExpenseForm></ExpenseForm></div>
+        
       </div>
-    
-    
-    
+      
+       
   );
 }
 
