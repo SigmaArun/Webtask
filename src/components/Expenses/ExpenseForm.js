@@ -7,7 +7,6 @@ const ExpenseForm = () => {
   const [enteredDate,setEnteredDate]=useState('');
 
    const titleChangeHandler=(event)=>{
-    //console.log('Title changed:', event.target.value);
      setEnteredTitle(event.target.value);
    };
    const amountChangeHandler=(event)=>{
@@ -21,8 +20,8 @@ const ExpenseForm = () => {
     event.preventDefault();
     const title = enteredTitle;
     const date = enteredDate;
-
     const amount = enteredAmount;
+    
     const obj = {
     
       date,
@@ -30,7 +29,25 @@ const ExpenseForm = () => {
       amount
     };
     localStorage.setItem(obj.date, JSON.stringify(obj));
-    console.log(obj)   
+    console.log(obj)  
+
+    const parentDiv= document.createElement('div');
+    const childDiv= document.createElement('div');
+    childDiv.innerHTML=`${obj.date} - ${obj.title} - ${'$'+obj.amount}`;
+    parentDiv.appendChild(childDiv);
+    
+   
+    // Note Line : by this below line  code i was able to show on screen but i wanted to add in card  
+   // document.body.appendChild(parentDiv);
+
+     // i like to add in Card compnent itself beacuse i like this 
+     const cardElement = document.querySelector('.expenses');
+     cardElement.appendChild(parentDiv);
+   // <Card className="expenses">
+   //   parentDiv
+   // </Card>
+
+    
   };  
   return (
     <Card className="expenses">
@@ -45,6 +62,7 @@ const ExpenseForm = () => {
         <button type="submit">Add Expense</button>
       </form>
     </div>
+   
     </Card>
   );
 };
