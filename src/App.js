@@ -1,6 +1,8 @@
 
 import Expenses from "./components/Expenses/Expenses";
-import ExpenseForm from "./components/Expenses/ExpenseForm"
+
+import NewExpense from "./components/NewExpense/NewExpense";
+import React, { useState } from "react";
 
 const App =()=> {
   const expenses = [  
@@ -27,14 +29,19 @@ const App =()=> {
       locationOfExpenditure:" hyderabad"
     },
   ];
- 
+  const [initialexpenses, setExpenses] = useState(expenses);
+
+   const addExpenseHandler = expense=>{
+    setExpenses((prevExpenses) => [...prevExpenses,expense]);
+       
+    
+   }
   return (
      
       <div>
-      <h2>Lets get started</h2> 
-        <Expenses expenses ={expenses} />
-        <div> <ExpenseForm></ExpenseForm></div>
-        
+          <NewExpense onAddExpense={addExpenseHandler}/>
+        <Expenses expenses ={initialexpenses}/> 
+       
       </div>
       
        
