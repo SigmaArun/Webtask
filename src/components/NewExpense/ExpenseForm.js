@@ -44,10 +44,14 @@ const ExpenseForm = (props) => {
     const cardElement = document.querySelector(".expenses");
     cardElement.appendChild(parentDiv);
    */
+  
+  };
+  const cancelForm = () => {
+    props.onCancel();
   };
   return (
     
-      <form onSubmit={submitForm}>
+      <form onSubmit={submitForm} >
         <div className="new-expense__controls">
           <div className="new-expense__control">
             <label htmlFor="date">Date</label>
@@ -83,6 +87,7 @@ const ExpenseForm = (props) => {
         </div>
         
         <div className="new-expense__actions">
+            <button type="button" onClick={cancelForm}>Cancel</button>
             <button type="submit">Add Expense</button>
         </div>
       </form>
