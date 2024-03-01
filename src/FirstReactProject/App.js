@@ -11,10 +11,10 @@ const App=()=>{
         });
     }
     return(
-        <div>
+        <React.Fragment>
             <InputForm onAddUser={addUserHandler}></InputForm>
             <UsersList users={usersList}></UsersList>
-        </div>
+        </React.Fragment>
     )
 }
 export default App;
