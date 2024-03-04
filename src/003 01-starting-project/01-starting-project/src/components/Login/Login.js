@@ -2,16 +2,16 @@ import React, { useState,  useReducer } from "react";
 
 import Card from "../UI/Card/Card";
 import classes from "./Login.module.css";
-import Button from "../UI/Button/Button";
+import Button from "../UI/Button/Button";     
 
-const emailReducer = (state, action) => {
+const emailReducer = (state, action) => {  
   if(action.type==='USER_INPUT'){
-    return { value: action.val, isValid: action.val.includes('@')};
+    return { value: action.val, isValid: action.val.includes('@')};   
   }
   if(action.type==='INPUT_BLUR'){
-    return { value: state.value, isValid: state.value.includes('@') };
+    return { value: state.value, isValid: state.value.includes('@') };  
   }
-  return { value: "", isValid: false };
+  return { value: "", isValid: false };   
 };
 
  // for password useReducer
@@ -63,7 +63,7 @@ const Login = (props) => {
     //setEnteredEmail(event.target.value);
   };
 
-  const collegeChangeHandler = (event) => {
+  const collegeChangeHandler = (event) => {   
     setEnteredCollege(event.target.value);
     setFormIsValid(
       emailState.isValid && event.target.value.trim().length >3
