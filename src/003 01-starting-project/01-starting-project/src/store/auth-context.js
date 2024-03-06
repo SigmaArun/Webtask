@@ -1,8 +1,48 @@
+import React, { useState,useEffect } from "react";
+
+
+
+const AuthContext = React.createContext({
+  isLoggedIn: false,
+  onLogout: () => {},
+  onLogin:(email,password,college)=> {},
+});
+
+export const AuthContextProvider = (props) => {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+     
+  useEffect(()=>{
+    const stordUserDetails=localStorage.getItem('isLoggedIn');    
+    if(stordUserDetails==='1'){
+     setIsLoggedIn(true);
+    }
+  },[]);
+  
+
+  const logoutHandler = ()=> {
+    localStorage.removeItem('isLoggedIn');
+    setIsLoggedIn(false);
+  };
+  const loginHandler = ()=> {
+    
+    localStorage.setItem('isLoggedIn','1');
+       setIsLoggedIn(true);
+  
+  
+  };  
  
- import React from "react";
+  return (
+    <AuthContext.Provider
+      value={{
+        isLoggedIn: isLoggedIn,
+        onLogout: logoutHandler,
+        onLogin: loginHandler,
+      }}
+    >
+      {props.children}
+    </AuthContext.Provider>
+  );
+};
 
-  const AuthContext=React.createContext({
-    isLoggedIn: false
-  })
-
-  export default AuthContext;
+export default AuthContext;
