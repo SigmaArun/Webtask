@@ -5,7 +5,8 @@ import './index.css';
 //import App from './FirstReactProject/App';
 // import App from './003 01-starting-project/01-starting-project/src/App';
 //import App from './App';
-import App from './seller-admin-page/App';
+//import App from './seller-admin-page/App';
+import App from './002 01-starting-project/01-starting-project/src/App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root')); 
