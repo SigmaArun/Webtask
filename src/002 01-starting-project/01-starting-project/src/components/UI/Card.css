@@ -3,7 +3,7 @@
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.25);
     border-radius: 12px;
     width: fit-content;
-    background-color: grey;
+    background-color:  rgb(50, 50, 50);
     padding: 10px;
     position: absolute;
     color: white;
@@ -11,6 +11,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    
     }
 
     .card p {
