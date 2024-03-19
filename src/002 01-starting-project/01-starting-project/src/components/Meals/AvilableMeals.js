@@ -1,6 +1,7 @@
 
 import classes from './AvilableMeals.module.css';
 import Card from '../UI/Card';
+import MealsForm from './MealsForm';
 const Meals_Items=[
     {
        id:'1',
@@ -36,11 +37,20 @@ const Meals_Items=[
 ];
  const AvilableMeals=()=>{
     const mealsList= Meals_Items.map((meal)=>
-    <li key={meal.id}>
-    <div>{meal.name}</div>
-    <div>{meal.description}</div>
-    <div>${meal.price}</div>
-</li>
+
+<div  key={meal.id} className={classes.outer}>
+
+<div className={classes.mealDetails}>
+<div className={classes.category1}>{meal.name}</div>
+<div className={classes.category2}>{meal.description}</div>
+<div className={classes.category3}> ₹ {meal.price}</div>
+</div>
+<div className={classes.formContainer}>
+   <MealsForm></MealsForm></div>
+
+
+
+</div>
   
      );
     return(
@@ -48,7 +58,7 @@ const Meals_Items=[
         <Card>
         
             <ul>
-              {mealsList}
+             {mealsList}
             </ul>
         
         </Card>

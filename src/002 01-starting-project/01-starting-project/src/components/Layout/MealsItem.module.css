@@ -1,0 +1,14 @@
+
+ .outer{
+    border-bottom: solid;
+ }
+ .category1{
+    color: black;
+ }
+ .category2{
+  color: black;
+  font-style: italic;
+ }
+ .category3{
+   color: brown;
+ }

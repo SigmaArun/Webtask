@@ -1,11 +1,13 @@
 import classes from './MealsSummery.module.css';
-import Card from '../UI/Card';
+
  const MealsSummery=()=>{
   return(
+    <section className={classes.mealsSummary}>
     <div className={classes.centered}>
-    <Card>
+    <div>
       <h1>Delicious Food ,Delivered to you</h1>
-      
+      </div>
+      <div className={classes.paragraphs}>
       <p>Choose your favourite meals from our broad selection of avilable meals 
          and enjoy a delicious</p> 
        <p>  lunch or dinner at Home</p>
@@ -14,9 +16,11 @@ import Card from '../UI/Card';
         and ofCourse by </p>
       <p>  experienced chefs!
       </p>
+      </div>
     
-    </Card>
+    
     </div>
+    </section>
   )
  }
  export default MealsSummery;

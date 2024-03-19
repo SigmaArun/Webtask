@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 90vh;
+    height: 110vh;
     padding: 10px;
     cursor: pointer;
     
@@ -10,3 +10,31 @@
   
     
   }
+
+  .mealDetails {
+    flex-grow: 1;
+  }
+  
+  .formContainer {
+    flex-shrink: 0;
+    margin-left: 20px;
+  }
+
+  .outer{
+    display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  border-bottom: solid white; 
+  padding-bottom: 10px;
+    
+ }
+ .category1{
+    color: black;
+ }
+ .category2{
+  color: light black;
+  font-style: italic;
+ }
+ .category3{
+   color: brown;
+ }
