@@ -1,14 +1,20 @@
 import { Fragment } from "react";
 import Header from "./components/Layout/Header";
-import MealsSummery from "./components/Meals/MealsSummery";
+
 import Meals from "./components/Meals/Meals";
 import Cart from  "./components/Cart/Cart";
+import React, { useState } from 'react';
 
 function App() {
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const toggleCartHandler = () => {
+    setIsCartOpen((prevState) => !prevState);
+  };
   return (
    <Fragment>
-    <Cart></Cart>
-    <Header></Header>
+     {isCartOpen && <Cart />}
+    <Header onToggleCart={toggleCartHandler}></Header>
     <main>
       <Meals></Meals>
      
