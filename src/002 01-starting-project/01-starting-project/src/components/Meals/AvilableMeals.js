@@ -1,6 +1,7 @@
 import classes from "./AvilableMeals.module.css";
 import Card from "../UI/Card";
 import MealsForm from "./MealsForm";
+import React, { useState } from "react";
 const Meals_Items = [
   {
     id: "1",
@@ -33,7 +34,12 @@ const Meals_Items = [
     price: 100.0,
   },
 ];
+
 const AvilableMeals = () => {
+  const [selectedMealId, setSelectedMealId] = useState(null);
+  const handleAddToCart = (mealId) => {
+    setSelectedMealId(mealId);
+  };
   const mealsList = Meals_Items.map((meal) => (
     <div key={meal.id} className={classes.outer}>
       <div className={classes.mealDetails}>
@@ -42,7 +48,11 @@ const AvilableMeals = () => {
         <div className={classes.category3}> ₹ {meal.price}</div>
       </div>
       <div className={classes.formContainer}>
-        <MealsForm></MealsForm>
+        <MealsForm
+          mealId={meal.id}
+          onAddToCart={handleAddToCart}
+          Meals_Items={Meals_Items}
+        ></MealsForm>
       </div>
     </div>
   ));
