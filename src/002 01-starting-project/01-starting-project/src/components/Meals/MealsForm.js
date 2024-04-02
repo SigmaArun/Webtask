@@ -18,6 +18,7 @@ const MealsForm = ({ mealId, onAddToCart, Meals_Items }) => {
       return;
     }
     const selectedMeal = Meals_Items.find((meal) => meal.id === mealId);
+    
     if (!selectedMeal) {
       console.error("Selected meal not found."); 
       return;
@@ -44,6 +45,7 @@ const MealsForm = ({ mealId, onAddToCart, Meals_Items }) => {
           className={classes.input}
           value={enteredAmount}
           onChange={amountChangeHandler}
+          min="1"
         ></input>
       </div>
       <div>

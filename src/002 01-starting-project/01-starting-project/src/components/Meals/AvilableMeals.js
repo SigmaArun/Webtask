@@ -33,6 +33,18 @@ const Meals_Items = [
     description: "maharastrian vada pao with lovely taste",
     price: 100.0,
   },
+  {
+    id: "6",
+    name: "Chowmeen",
+    description: "Best Chinese taste ",
+    price: 100.0,
+  },
+  {
+    id: "7",
+    name: "Chilli potato ",
+    description: "super taste with garlic flavoure ",
+    price: 100.0,
+  },
 ];
 
 const AvilableMeals = () => {
