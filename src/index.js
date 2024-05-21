@@ -6,6 +6,7 @@ import './index.css';
 // react boot strap configration
 import '../node_modules/react-bootstrap/dist/react-bootstrap';
 import '../node_modules/bootstrap/dist/css/bootstrap.css';
+
 import reportWebVitals from './reportWebVitals';
 import App from './ecommerceWebsite/App.js';
 
