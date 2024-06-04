@@ -1,8 +1,8 @@
 import React from 'react';
-
+import './Footer.css';
 const Footer = () => {
     return (
-        <footer className="bg-dark text-white text-center py-3">
+        <footer className="footer-fixed">
             <div className="container">
                 <div className="row">
                     <h3>The Generics</h3>

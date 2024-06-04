@@ -1,0 +1,7 @@
+.text-center{
+    font-family: 'Bebas Neue', sans-serif; 
+    font-size: 3rem; 
+    margin: 0 auto;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5); 
+}

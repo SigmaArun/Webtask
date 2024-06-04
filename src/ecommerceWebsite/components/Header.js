@@ -3,9 +3,11 @@ import { Container, Navbar, Nav, Button } from "react-bootstrap";
 import "./Header.css";
 import { useContext } from "react";
 import CartContext from './store/CartContext';
+import { NavLink} from "react-router-dom";
+
 
 const Header = () => {
-  const cartCtx = useContext(CartContext);
+  const cartCtx = useContext(CartContext); 
 
   const handler = () => {
     cartCtx.openCart();
@@ -16,10 +18,11 @@ const Header = () => {
     <>
       <Navbar className="navbar-fixed" bg="dark" data-bs-theme="dark">
         <Container>
-          <Nav className="me-auto">
-            <Nav.Link href="#home">HOME</Nav.Link>
-            <Nav.Link href="#features">STORE</Nav.Link>
-            <Nav.Link href="#pricing">ABOUT</Nav.Link>
+          <Nav className="mx-auto">
+             
+            <NavLink to="/home" className="nav-link">HOME</NavLink>
+            <NavLink to="/store" className="nav-link">STORE</NavLink>
+            <NavLink to="/about" className="nav-link">ABOUT</NavLink>
           </Nav>
           <div style={{ display: "flex", alignItems: "center" }}>
             <Button onClick={handler}>Cart</Button>
@@ -27,10 +30,11 @@ const Header = () => {
           </div>
         </Container>
       </Navbar>
-
-      <section className="section">
+       <Container fluid className="p-0">
+      <section className="section"> 
         <h1>The GENERICS</h1>
       </section>
+      </Container>
     </>
   );
 };

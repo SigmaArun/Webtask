@@ -1,9 +1,10 @@
-.section {
+/* .section {
     background-color: #333333;
     height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 .section h1{
     display: block;
@@ -16,4 +17,27 @@
     font-weight: bold;
     unicode-bidi: isolate;
     color: white;
-}
+   
+}  */
+.navbar-fixed {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  .section {
+    margin-top: 3rem; 
+    background-color: #333333;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .section h1 {
+  
+    color: white;
+    font-size: 3rem; 
+    margin: 0;
+  }
+  
+

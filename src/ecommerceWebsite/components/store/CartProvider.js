@@ -15,11 +15,13 @@ const CartProvider = (props) => {
   const closeCartHandler = () => {
     setOpenCart(false);
   };
+  // this case is different i have to add quantity dyamically
   const addItemToCart=(item)=>{
-    setItems((prevItems) => {
+    setItems((prevItems) => {  // here i am writing function inside setState function.
       const existingItemIndex = prevItems.findIndex((i) => i.id === item.id);
       if (existingItemIndex !== -1) {
         const updatedItems = [...prevItems];
+          
         updatedItems[existingItemIndex] = {
           ...updatedItems[existingItemIndex],
           quantity: updatedItems[existingItemIndex].quantity + 1,
@@ -39,6 +41,7 @@ const CartProvider = (props) => {
         return prevItems.filter((item) => item.id !== id);
       }
       const updatedItems = [...prevItems];
+      
       updatedItems[existingItemIndex] = {
         ...existingItem,
         quantity: existingItem.quantity - 1,

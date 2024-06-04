@@ -21,8 +21,9 @@ const Cart = () => {
   return (
     <>
         {cartCtx.isOpenCart && (
+            <Container>
         <Modal>
-          <Container>
+        
             <div className="cartLayout">
               <div>
                 <Button onClick={cartHandler} style={{ marginLeft: "0px" }}>
@@ -74,8 +75,9 @@ const Cart = () => {
                 </Button>
               </div>
             </div>
-          </Container>
+          
         </Modal>
+        </Container>
       )}
     
     </>
