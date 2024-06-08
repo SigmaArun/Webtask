@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bilingual Question Paper</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .question {
+      margin-bottom: 20px;
+    }
+    .options {
+      list-style-type: none;
+      padding: 0;
+    }
+    .options li {
+      margin-bottom: 10px;
+    }
+    .submit-btn {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <button onclick="setLanguage('en')">English</button>
+    <button onclick="setLanguage('hi')">Hindi</button>
+  </div>
+  <div id="question-container"></div>
+  <button class="submit-btn" onclick="submitAnswers()">Submit Answers</button>
+
+
+  <script src="./script.js"></script>
+</body>
+</html>
