@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, useCallback } from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
@@ -9,7 +9,7 @@ function App() {
      const[error,setError]=useState(null);
      const [retrying, setRetrying] = useState(false);
 
-      // 5 sec calkl
+      // 5 sec calkl when url is wrong 
      useEffect(() => {
       let retryTimeout;
       if (retrying) {
@@ -24,15 +24,16 @@ function App() {
       };
     }, [retrying]);
 
+      
 
 
 
 
-    const fetchMoviesHandler=async ()=>{
+    const fetchMoviesHandler= useCallback( async ()=>{
       setIsLoading(true);
       setError(null);
       try{
-     const response=await  fetch('https://swapi.dev/api/film/');
+     const response=await  fetch('https://swapi.dev/api/films/');
      const data=await response.json(); 
      if(!response.ok){
       throw new Error('something went wrong......Retrying');
@@ -54,7 +55,13 @@ function App() {
         setError(error.message);
         setRetrying(true);
       }
-     }
+     },[]);
+
+      // adding useeffect to load at first render cycle for the very first time
+
+       useEffect(()=>{
+           fetchMoviesHandler();
+       },[fetchMoviesHandler]);
 
 
          // cancel 
