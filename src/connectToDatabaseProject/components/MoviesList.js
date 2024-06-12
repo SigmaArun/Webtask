@@ -11,7 +11,7 @@ const MovieList = (props) => {
         <Movie
           key={movie.id}
           title={movie.title}
-          releaseDate={movie.releaseDate}
+          releaseDate={new Date(movie.releaseDate).toLocaleDateString()}
           openingText={movie.openingText}
         />
       ))}

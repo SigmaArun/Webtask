@@ -2,12 +2,21 @@ import React, { useState,useEffect, useCallback } from 'react';
 
 import MoviesList from './components/MoviesList';
 import './App.css';
+import MovieForm from './components/MovieForm';
 
 function App() {
      const[movies,setMovies]=useState([]);
      const[isLoading,setIsLoading]=useState(false);
      const[error,setError]=useState(null);
      const [retrying, setRetrying] = useState(false);
+
+       const addMovieByForm=(data)=>{
+        const newMovie = {
+          ...data,
+          releaseDate: data.releaseDate.toISOString(), // Convert Date object to string
+        };
+        setMovies((prevMovies) => [...prevMovies, newMovie]);
+       }
 
       // 5 sec calkl when url is wrong 
      useEffect(() => {
@@ -45,7 +54,7 @@ function App() {
         id:movieData.episode_id,
         title:movieData.title,
         openingText:movieData.opening_crawl,
-        releaseDate:movieData.release_date,
+        releaseDate:new Date(movieData.release_date).toISOString(),
       }
      });
      setMovies(transformMoviesData);
@@ -72,6 +81,9 @@ function App() {
         };
   return (
     <React.Fragment>
+      <section>
+      <MovieForm addMovieByForm={addMovieByForm}></MovieForm>
+      </section>
       <section>
         <button onClick={fetchMoviesHandler}>Fetch Movies</button>
         {retrying && (
