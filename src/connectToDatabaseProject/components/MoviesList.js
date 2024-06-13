@@ -10,9 +10,11 @@ const MovieList = (props) => {
       {props.movies.map((movie) => (
         <Movie
           key={movie.id}
+          id={movie.id}
           title={movie.title}
           releaseDate={new Date(movie.releaseDate).toLocaleDateString()}
           openingText={movie.openingText}
+          onDelete={props.onDeleteMovie}
         />
       ))}
     </ul>
