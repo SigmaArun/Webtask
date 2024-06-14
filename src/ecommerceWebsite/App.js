@@ -8,6 +8,7 @@ import Store from "./components/pages/Store";
 import Header from './components/Header';
 import Footer from './components/Footer'; 
 import Home from './components/pages/Home';
+import Contact from "./components/pages/Contact";
 import { Container } from "react-bootstrap";
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
           <Route path="/home" element={<Home/>} />
           <Route path="/about" element={<About />} />
           <Route path="/store" element={<Store />} />
+          <Route path="/contact"  element={<Contact/>}/>
           
         </Routes>
        <Footer></Footer>

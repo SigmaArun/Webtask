@@ -134,7 +134,7 @@ function App() {
         )}
       </section>
       <section>
-      {!isLoading && <MoviesList movies={movies}  onDeleteMovie={deleteMovieHandler} />}
+      {!isLoading && <MoviesList movies={movies}  onDeleteMovie={deleteMovieHandler}  />}
         {isLoading && <p>Movies are Loading...</p>}
         {!isLoading && movies.length === 0 && !error && (
           <p>No movies here. Click to fetch movies.</p>

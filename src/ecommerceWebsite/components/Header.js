@@ -23,6 +23,7 @@ const Header = () => {
             <NavLink to="/home" className="nav-link">HOME</NavLink>
             <NavLink to="/store" className="nav-link">STORE</NavLink>
             <NavLink to="/about" className="nav-link">ABOUT</NavLink>
+            <NavLink to="/contact" className="nav-link">CONTACT US</NavLink>
           </Nav>
           <div style={{ display: "flex", alignItems: "center" }}>
             <Button onClick={handler}>Cart</Button>
