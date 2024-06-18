@@ -5,10 +5,12 @@ import Button from "react-bootstrap/Button";
 import CartContext from "../store/CartContext";
 import { Container } from "react-bootstrap";
 import './Store.css';
-
+import { useNavigate } from 'react-router-dom';
+ 
 const Store = () => {
 
   const cartCtx = useContext(CartContext);
+  const navigate = useNavigate();
 
   const cartHandler = () => {
     cartCtx.openCart();
@@ -59,6 +61,10 @@ const Store = () => {
     cartCtx.addItem(items);
   };
 
+   const productDetailsHandler=(id)=>{
+    navigate(`/store/products/${id}`);
+   }
+
   return (
     <>
       <section>
@@ -82,6 +88,11 @@ const Store = () => {
                       variant="primary"
                     >
                       Add to Cart
+                    </Button>
+                    <Button 
+                    onClick={()=>productDetailsHandler(item.id)}
+                    variant="secondary" >
+                      See Details
                     </Button>
                   </Card.Body>
                 </Card>

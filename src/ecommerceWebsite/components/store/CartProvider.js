@@ -5,17 +5,19 @@ import { useState } from "react";
 const CartProvider = (props) => {
   const [isOpenCart, setOpenCart] = useState(false);
   const [items, setItems] = useState([]);
-  //const [totalAmount, setTotalAmount] = useState(0);
+  //const [totalAmount, setTotalAmount] = use State(0); 
 
  
 
-  const openCartHandler = () => {
+  const openCartHandler = () => { 
     setOpenCart(true);
   };
   const closeCartHandler = () => {
     setOpenCart(false);
   };
   // this case is different i have to add quantity dyamically
+  // rivise this 50 times when i have to add some thing dynamically 
+  // means in here i do not have a form , directly add to cart 
   const addItemToCart=(item)=>{
     setItems((prevItems) => {  // here i am writing function inside setState function.
       const existingItemIndex = prevItems.findIndex((i) => i.id === item.id);
@@ -30,7 +32,7 @@ const CartProvider = (props) => {
       }
       return [...prevItems, { ...item, quantity: 1 }];
     });
-  };
+  };   
   
 
   const removeItemHandler = (id) => {
@@ -43,12 +45,13 @@ const CartProvider = (props) => {
       const updatedItems = [...prevItems];
       
       updatedItems[existingItemIndex] = {
-        ...existingItem,
+        ...existingItem, 
         quantity: existingItem.quantity - 1,
       };
       return updatedItems;
     });
   };
+  // here it is variable not udating in state like in food app
   const totalAmount = items.reduce((total, item) => total + item.price * item.quantity, 0);
   const contextObject = {
     items: items,

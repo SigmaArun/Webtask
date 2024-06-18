@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes ,Navigate} from "react-router-dom";
 
 
 import Cart from "./components/Cart";
@@ -10,6 +10,7 @@ import Footer from './components/Footer';
 import Home from './components/pages/Home';
 import Contact from "./components/pages/Contact";
 import { Container } from "react-bootstrap";
+import ProductDetails from "./components/pages/ProductsDetails";
 
 const App = () => {
   return (
@@ -22,8 +23,10 @@ const App = () => {
          
           <Route path="/home" element={<Home/>} />
           <Route path="/about" element={<About />} />
-          <Route path="/store" element={<Store />} />
+          <Route path="/store" exact  element={<Store />} />
           <Route path="/contact"  element={<Contact/>}/>
+          <Route path="/store/products/:productId" element={<ProductDetails />} />
+          <Route path="/" element={<Navigate to="/home" />} />
           
         </Routes>
        <Footer></Footer>

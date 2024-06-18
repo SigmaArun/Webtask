@@ -57,7 +57,7 @@ const Contact=()=>{
         <Container className="mt-5 mb-5">
         <Row className="justify-content-md-center">
           <Col md={6}>
-            <h2>Contact Form</h2>
+            <h2>User Form</h2>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formName">
                 <Form.Label>Name</Form.Label>
