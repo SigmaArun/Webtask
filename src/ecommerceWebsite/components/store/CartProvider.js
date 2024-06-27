@@ -5,7 +5,7 @@ import { useState } from "react";
 const CartProvider = (props) => {
   const [isOpenCart, setOpenCart] = useState(false);
   const [items, setItems] = useState([]);
-  //const [totalAmount, setTotalAmount] = use State(0); 
+  //const [totalAmount, setTotalAmount] = use State(0);  
 
  
 
@@ -18,6 +18,7 @@ const CartProvider = (props) => {
   // this case is different i have to add quantity dyamically
   // rivise this 50 times when i have to add some thing dynamically 
   // means in here i do not have a form , directly add to cart 
+  //whatever i do on setItems(()=>{}) it store in items which is real state name  
   const addItemToCart=(item)=>{
     setItems((prevItems) => {  // here i am writing function inside setState function.
       const existingItemIndex = prevItems.findIndex((i) => i.id === item.id);

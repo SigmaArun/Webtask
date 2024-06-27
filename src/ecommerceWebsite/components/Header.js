@@ -20,15 +20,20 @@ const Header = () => {
         <Container>
           <Nav className="mx-auto">
              
-            <NavLink to="/home" className="nav-link">HOME</NavLink>
-            <NavLink to="/store" className="nav-link">STORE</NavLink>
+            <NavLink to="/home" className="nav-link" activeClassName="active">HOME</NavLink>
+            <NavLink to="/store" className="nav-link" activeClassName="active">STORE</NavLink>
             <NavLink to="/about" className="nav-link">ABOUT</NavLink>
             <NavLink to="/contact" className="nav-link">CONTACT US</NavLink>
           </Nav>
+          <NavLink to="/signup" className="nav-link">
+            <Button variant="primary">SignUp</Button>
+          </NavLink>
+          
           <div style={{ display: "flex", alignItems: "center" }}>
             <Button onClick={handler}>Cart</Button>
             <span style={{ marginLeft: "5px", color: "white" }}>{totalItems}</span>
           </div>
+         
         </Container>
       </Navbar>
        <Container fluid className="p-0">

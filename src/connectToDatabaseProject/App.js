@@ -10,12 +10,9 @@ function App() {
      const[error,setError]=useState(null);
      const [retrying, setRetrying] = useState(false); 
 
+        // this is post request very simple ,No state is updating 
        const addMovieByForm= async (movieData)=>{
-        // const newMovie = {
-        //   ...data,
-        //   releaseDate: data.releaseDate.toISOString(), // Convert Date object to string
-        // };
-        // setMovies((prevMovies) => [...prevMovies, newMovie]);
+    
          const response=await fetch('https://akecommerce-app-default-rtdb.firebaseio.com/movies.json', {
          
            method:'POST',
@@ -29,11 +26,9 @@ function App() {
           throw new Error('Failed to add movie');
         }
     
-         
-
        }
 
-      // 5 sec calkl when url is wrong 
+      // 5 sec calkl when url is wrong  when error in fetch 
      useEffect(() => {
       let retryTimeout;
       if (retrying) {
@@ -74,21 +69,13 @@ function App() {
       throw new Error('something went wrong......Retrying');
      }
 
-     //the data has results array from result use id,title, opening crawl ,release date below
-    //  const transformMoviesData=data.map((movieData)=>{
-    //   return {
-    //     id:movieData.episode_id,
-    //     title:movieData.title,
-    //     openingText:movieData.opening_crawl,
-    //     releaseDate:new Date(movieData.release_date).toISOString(),
-    //   }
-    //  });
+   
      setMovies(loadedMovies);
      setIsLoading(false);
      setRetrying(false);
       }catch(error){
         setError(error.message);
-        setRetrying(true);
+        setRetrying(true);    // here if this state get updated then useeffect get called for 5 sec 
       }
      },[]);
 

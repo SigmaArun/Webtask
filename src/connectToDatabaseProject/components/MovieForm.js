@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import './MovieForm.css';
 const MovieForm=(props)=>{
    const [title,setTitle]= useState("");
-    const [openingText,setOpeningText]=useState("");
+   const [openingText,setOpeningText]=useState("");
    const[releaseDate,setReleaseDate]= useState("");
 
    const titleHandler=(event)=>{
