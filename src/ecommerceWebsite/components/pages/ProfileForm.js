@@ -1,17 +1,9 @@
-import React, { useState ,useContext} from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Form, Alert, Button } from "react-bootstrap";
-import AuthContext from "../store/AuthContext";
 
-const LoginForm = () => {
-
-  const authCtx=useContext(AuthContext);
-  const [enteredEmail, setEnteredEmail] = useState("");
+const ProfileForm = () => {
   const [enteredPassword, setEnteredPassword] = useState("");
   const [error, setError] = useState(null);
-
-  const emailHandler = (event) => {
-    setEnteredEmail(event.target.value);
-  };
 
   const passwordHandler = (event) => {
     setEnteredPassword(event.target.value);
@@ -19,37 +11,27 @@ const LoginForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     setError(null);
-    // post request auth
     fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyADmXqIuQyG0nZ4Yeu7Hi13m2EP7oX6PfU",
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyADmXqIuQyG0nZ4Yeu7Hi13m2EP7oX6PfU",
 
       {
         method: "POST",
         body: JSON.stringify({
-          email: enteredEmail,
           password: enteredPassword,
           returnSecureToken: true,
         }),
         headers: {
-          "Content-Type": "application/json",
+          "content-Type": "application/json",
         },
       }
-    ).then((response) => {
+    )
+      .then((response) => {
         if (response.ok) {
-          return response.json().then((data) => {
-            console.log("Response data:", data); // Loging  the response data
-            const idToken = data.idToken; // Extracting  the idToken
-            console.log("idToken:", idToken); 
-            authCtx.login(data.idToken);
-          setEnteredEmail("");
           setEnteredPassword("");
-        });
         } else {
           return response.json().then((data) => {
-            const errorMessage = data.error?.message || "Authentication failed!";
-            setError(errorMessage);
+            setError(" weak password.");
           });
         }
       })
@@ -66,18 +48,8 @@ const LoginForm = () => {
             <h2>Login </h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="formEmail">
-                <Form.Label>Email address</Form.Label>
-                <Form.Control
-                  type="email"
-                  placeholder="Enter your email"
-                  name="email"
-                  value={enteredEmail}
-                  onChange={emailHandler}
-                />
-              </Form.Group>
               <Form.Group controlId="formPassword">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>New Password</Form.Label>
                 <Form.Control
                   type="password"
                   placeholder="Enter six digit password"
@@ -87,7 +59,7 @@ const LoginForm = () => {
                 />
               </Form.Group>
               <Button variant="primary" type="submit">
-                Login
+                Change Password
               </Button>
             </Form>
           </Col>
@@ -96,4 +68,4 @@ const LoginForm = () => {
     </>
   );
 };
-export default LoginForm;
+export default ProfileForm;

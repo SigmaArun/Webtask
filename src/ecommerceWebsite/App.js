@@ -12,10 +12,13 @@ import { Container } from "react-bootstrap";
 import SignUpForm from "./components/pages/SignUpForm";
 import LoginForm from "./components/pages/LoginForm";
 import ProductDetails from "./components/pages/ProductsDetails";
+import AuthProvider from "./components/store/AuthProvider";
+import ProfileForm from "./components/pages/ProfileForm";
 
 const App = () => {
   return (
     <>
+      <AuthProvider>
       <CartProvider>
         <Container fluid className="p-0">
           <Header></Header>
@@ -32,11 +35,14 @@ const App = () => {
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/signup" element={<SignUpForm />} />
             <Route path="/login"   element={<LoginForm/>}/>
+            
+            <Route path="/profile"   element={<ProfileForm/>}/>
           </Routes>
           <Footer></Footer>
           <Cart />
         </Container>
       </CartProvider>
+      </AuthProvider>
     </>
   );
 };
