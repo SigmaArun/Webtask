@@ -1,8 +1,11 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Container, Row, Col, Form, Alert, Button } from "react-bootstrap";
+import AuthContext from "../store/AuthContext";
 
 const ProfileForm = () => {
-  const [enteredPassword, setEnteredPassword] = useState("");
+
+    const authCtx=useContext(AuthContext);
+  const [enteredNewPassword, setEnteredPassword] = useState("");
   const [error, setError] = useState(null);
 
   const passwordHandler = (event) => {
@@ -13,16 +16,17 @@ const ProfileForm = () => {
     event.preventDefault();
     setError(null);
     fetch(
-      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyADmXqIuQyG0nZ4Yeu7Hi13m2EP7oX6PfU",
+      "https://identitytoolkit.googleapis.com/v1/accounts:update?key=AIzaSyADmXqIuQyG0nZ4Yeu7Hi13m2EP7oX6PfU",
 
       {
         method: "POST",
         body: JSON.stringify({
-          password: enteredPassword,
+            idToken:authCtx.token,
+          password: enteredNewPassword,
           returnSecureToken: true,
         }),
         headers: {
-          "content-Type": "application/json",
+          "Content-Type": "application/json",
         },
       }
     )
@@ -45,7 +49,7 @@ const ProfileForm = () => {
       <Container className="mt-5 mb-5">
         <Row className="justify-content-md-center">
           <Col md={6}>
-            <h2>Login </h2>
+            <h2>User can  Change password </h2>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formPassword">
@@ -54,7 +58,7 @@ const ProfileForm = () => {
                   type="password"
                   placeholder="Enter six digit password"
                   name="password"
-                  value={enteredPassword}
+                  value={enteredNewPassword}
                   onChange={passwordHandler}
                 />
               </Form.Group>
