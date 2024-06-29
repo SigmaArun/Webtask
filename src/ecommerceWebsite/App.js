@@ -10,6 +10,7 @@ import Home from "./components/pages/Home";
 import Contact from "./components/pages/Contact";
 import { Container } from "react-bootstrap";
 import SignUpForm from "./components/pages/SignUpForm";
+import LoginForm from "./components/pages/LoginForm";
 import ProductDetails from "./components/pages/ProductsDetails";
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
             />
             <Route path="/" element={<Navigate to="/home" />} />
             <Route path="/signup" element={<SignUpForm />} />
+            <Route path="/login"   element={<LoginForm/>}/>
           </Routes>
           <Footer></Footer>
           <Cart />

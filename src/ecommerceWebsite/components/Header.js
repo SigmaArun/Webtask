@@ -28,6 +28,9 @@ const Header = () => {
           <NavLink to="/signup" className="nav-link">
             <Button variant="primary">SignUp</Button>
           </NavLink>
+          <NavLink to="/login" className="nav-link">
+            <Button variant="primary">Login</Button>
+          </NavLink>
           
           <div style={{ display: "flex", alignItems: "center" }}>
             <Button onClick={handler}>Cart</Button>
