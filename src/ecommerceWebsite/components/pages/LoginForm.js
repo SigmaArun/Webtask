@@ -39,13 +39,11 @@ const LoginForm = () => {
     ).then((response) => {
         if (response.ok) {
           return response.json().then((data) => {
-            console.log("Response data:", data); // Loging  the response data
-            const idToken = data.idToken; // Extracting  the idToken
-            console.log("idToken:", idToken); 
-            authCtx.login(data.idToken);
-          setEnteredEmail("");
-          setEnteredPassword("");
-        });
+            authCtx.login(data.idToken); // Log in with the received idToken i removed logging token details 
+            setEnteredEmail("");
+            setEnteredPassword("");
+          });
+      
         } else {
           return response.json().then((data) => {
             const errorMessage = data.error?.message || "Authentication failed!";
