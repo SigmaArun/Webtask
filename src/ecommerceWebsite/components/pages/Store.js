@@ -1,16 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "react-bootstrap/Card";
-import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import CartContext from "../store/CartContext";
 import { Container } from "react-bootstrap";
 import './Store.css';
-import { useNavigate } from 'react-router-dom';
- 
+import { useHistory } from 'react-router-dom';
+
 const Store = () => {
 
   const cartCtx = useContext(CartContext);
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const cartHandler = () => {
     cartCtx.openCart();
@@ -18,52 +17,38 @@ const Store = () => {
 
   const productsArr = [
     {
-       id:1,
+       id: 1,
       title: "English Songs",
-
       price: 1,
-
-      imageUrl:
-        "https://github.com/SigmaArun/Webtask/blob/main/hollywood1.jpg?raw=true",
+      imageUrl: "https://github.com/SigmaArun/Webtask/blob/main/hollywood1.jpg?raw=true",
     },
-
     {
-        id:2,
+        id: 2,
       title: "Instrumental",
-
       price: 2,
-
-      imageUrl:
-        "https://github.com/SigmaArun/Webtask/blob/main/instrumental.jpg?raw=true",
+      imageUrl: "https://github.com/SigmaArun/Webtask/blob/main/instrumental.jpg?raw=true",
     },
-
     { 
-      id:3,
+      id: 3,
       title: "Bollywood",
-
       price: 3,
-
-      imageUrl:
-        "https://github.com/SigmaArun/Webtask/blob/main/bollywood.jpeg?raw=true",
+      imageUrl: "https://github.com/SigmaArun/Webtask/blob/main/bollywood.jpeg?raw=true",
     },
-
     {
-      id:4,
+      id: 4,
       title: "Tamil songs",
-
       price: 1,
-
-      imageUrl:
-        "https://github.com/SigmaArun/Webtask/blob/main/tamil.jpg?raw=true",
+      imageUrl: "https://github.com/SigmaArun/Webtask/blob/main/tamil.jpg?raw=true",
     },
   ];
-  const addItemToCartHandler = (items) => {
-    cartCtx.addItem(items);
+
+  const addItemToCartHandler = (item) => {
+    cartCtx.addItem(item);
   };
 
-   const productDetailsHandler=(id)=>{
-    navigate(`/store/products/${id}`);
-   }
+  const productDetailsHandler = (id) => {
+    history.push(`/store/products/${id}`);
+  };
 
   return (
     <>
@@ -81,17 +66,18 @@ const Store = () => {
                   <Card.Body>
                     <Card.Title>{item.title}</Card.Title>
                     <Card.Text>
-                      <span> {item.price}$</span>
+                      <span>{item.price}$</span>
                     </Card.Text>
                     <Button
-                      onClick={()=>addItemToCartHandler(item)}
+                      onClick={() => addItemToCartHandler(item)}
                       variant="primary"
                     >
                       Add to Cart
                     </Button>
                     <Button 
-                    onClick={()=>productDetailsHandler(item.id)}
-                    variant="secondary" >
+                      onClick={() => productDetailsHandler(item.id)}
+                      variant="secondary"
+                    >
                       See Details
                     </Button>
                   </Card.Body>
@@ -103,7 +89,7 @@ const Store = () => {
       </section>
       <Container>
         <div className="d-flex justify-content-center my-3">
-          <Button variant="secondary" size="lg" onClick={() => cartHandler()}>
+          <Button variant="secondary" size="lg" onClick={cartHandler}>
             Click to go to Cart
           </Button>
         </div>
@@ -111,4 +97,5 @@ const Store = () => {
     </>
   );
 };
+
 export default Store;

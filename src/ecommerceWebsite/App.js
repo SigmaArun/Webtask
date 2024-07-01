@@ -1,6 +1,5 @@
-import { Route, Routes, Navigate } from "react-router-dom";
-import React, { useContext } from "react";
-
+import React ,{useContext}from "react";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Cart from "./components/Cart";
 import CartProvider from "./components/store/CartProvider";
 import About from "./components/pages/About";
@@ -17,46 +16,56 @@ import AuthProvider from "./components/store/AuthProvider";
 import ProfileForm from "./components/pages/ProfileForm";
 import AuthContext from "./components/store/AuthContext";
 
-const App = () => {
+
+
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
   const authCtx = useContext(AuthContext);
+  return (
+    <Route
+      {...rest}
+      render={props =>
+        authCtx.isLoggedIn ? <Component {...props} /> : <Redirect to="/login" />
+      }
+    />
+  );
+};
+
+
+const App = () => {
+ const authCtx= useContext(AuthContext);
   return (
     <>
       <AuthProvider>
         <CartProvider>
-          <Container fluid className="p-0">
-            <Header></Header>
+          <Router>
+            <Container fluid className="p-0">
+              <Header />
+              <Switch>
+                <Route path="/home" component={Home} />
+                <Route path="/about" component={About} />
 
-            <Routes>
-              <Route path="/home" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/store" exact element={<Store />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route
-                path="/store/products/:productId"
-                element={<ProductDetails />}
-              />
-              <Route path="/" element={<Navigate to="/home" />} />
-              <Route path="/signup" element={<SignUpForm />} />
-              <Route path="/login" element={<LoginForm />} />
+                <Route path="/store/products/:productId" component={ProductDetails} />
+                 
+                <PrivateRoute path="/store" exact component={Store} />
+                                
 
-              <Route
-                path="/profile"
-                element={
-                  authCtx.isLoggedIn ? (
-                    <ProfileForm />
-                  ) : (
-                    <Navigate to="/login" />
-                  )
-                }
-              />
-              <Route path="*" element={<Navigate to="/" />} />
-            </Routes>
-            <Footer></Footer>
-            <Cart />
-          </Container>
+                <Route path="/contact" component={Contact} />
+                <Route path="/signup" component={SignUpForm} />
+                <Route path="/login" component={LoginForm} />
+                
+                <PrivateRoute path="/profile" component={ProfileForm} />
+                <Redirect exact from="/" to="/home" />
+                <Route path="*" render={() => <Redirect to="/" />} />
+              </Switch>
+              <Footer />
+              <Cart />
+            </Container>
+          </Router>
         </CartProvider>
       </AuthProvider>
     </>
   );
 };
+
 export default App;
