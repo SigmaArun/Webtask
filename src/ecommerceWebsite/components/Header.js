@@ -51,7 +51,9 @@ const Header = () => {
           )}
           
           <div style={{ display: "flex", alignItems: "center" }}>
+          <NavLink to="/cart" className="nav-link">
             <Button onClick={handler}>Cart</Button>
+            </NavLink>
             <span style={{ marginLeft: "5px", color: "white" }}>{totalItems}</span>
           </div>
 

@@ -48,6 +48,7 @@ const App = () => {
                 <Route path="/store/products/:productId" component={ProductDetails} />
                  
                 <PrivateRoute path="/store" exact component={Store} />
+                <PrivateRoute path="/cart" exact component={Cart} />
                                 
 
                 <Route path="/contact" component={Contact} />
@@ -55,11 +56,12 @@ const App = () => {
                 <Route path="/login" component={LoginForm} />
                 
                 <PrivateRoute path="/profile" component={ProfileForm} />
+
                 <Redirect exact from="/" to="/home" />
                 <Route path="*" render={() => <Redirect to="/" />} />
               </Switch>
               <Footer />
-              <Cart />
+             
             </Container>
           </Router>
         </CartProvider>

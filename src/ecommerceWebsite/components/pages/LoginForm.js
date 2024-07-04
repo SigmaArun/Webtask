@@ -39,7 +39,7 @@ const LoginForm = () => {
     ).then((response) => {
         if (response.ok) {
           return response.json().then((data) => {
-            authCtx.login(data.idToken); // Log in with the received idToken i removed logging token details 
+            authCtx.login(data.idToken,enteredEmail); // Log in with the received idToken i removed logging token details 
             setEnteredEmail("");
             setEnteredPassword("");
           });
