@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
+import { useHistory } from 'react-router-dom';
 
 const SignUpForm = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -7,6 +8,7 @@ const SignUpForm = () => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const history = useHistory();
 
   const emailHandler = (event) => {
     setEnteredEmail(event.target.value);
@@ -41,6 +43,7 @@ const SignUpForm = () => {
         if (response.ok) {
           setEnteredEmail("");
           setEnteredPassword("");
+          history.push('/Webtask/store');
         } else {
           return response.json().then((data) => {
             setError("Email already exists or weak password.");

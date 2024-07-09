@@ -5,6 +5,11 @@ import CartContext from "../store/CartContext";
 import { Container } from "react-bootstrap";
 import './Store.css';
 import { useHistory } from 'react-router-dom';
+import hollywoodImage from "../images/storeimages/hollywood.jpeg";
+import instrumentalImage from "../images/storeimages/instrumental.jpeg";
+import bollywoodImage from "../images/storeimages/bollywood.jpeg";
+import tamilImage from "../images/storeimages/tamil.jpeg";
+
 
 const Store = () => {
 
@@ -20,25 +25,25 @@ const Store = () => {
        id: 1,
       title: "English Songs",
       price: 1,
-      imageUrl: "https://github.com/SigmaArun/Webtask/blob/main/hollywood1.jpg?raw=true",
+      imageUrl: hollywoodImage,
     },
     {
         id: 2,
       title: "Instrumental",
       price: 2,
-      imageUrl: "https://github.com/SigmaArun/Webtask/blob/main/instrumental.jpg?raw=true",
+      imageUrl: instrumentalImage,
     },
     { 
       id: 3,
       title: "Bollywood",
       price: 3,
-      imageUrl: "https://github.com/SigmaArun/Webtask/blob/main/bollywood.jpeg?raw=true",
+      imageUrl: bollywoodImage,
     },
     {
       id: 4,
       title: "Tamil songs",
       price: 1,
-      imageUrl: "https://github.com/SigmaArun/Webtask/blob/main/tamil.jpg?raw=true",
+      imageUrl: tamilImage,
     },
   ];
 
@@ -52,6 +57,7 @@ const Store = () => {
 
   return (
     <>
+    <Container>
       <section>
         <h2 className="text-center">Music</h2>
         <div className="d-flex justify-content-center">
@@ -87,6 +93,7 @@ const Store = () => {
           </div>
         </div>
       </section>
+      </Container>
       <Container>
         <div className="d-flex justify-content-center my-3">
           <Button variant="secondary" size="lg" onClick={cartHandler}>

@@ -2,11 +2,13 @@ import React, { useState,useContext } from "react";
 import { Container, Row, Col, Form, Alert, Button } from "react-bootstrap";
 import AuthContext from "../store/AuthContext";
 
+
 const ProfileForm = () => {
 
     const authCtx=useContext(AuthContext);
   const [enteredNewPassword, setEnteredPassword] = useState("");
   const [error, setError] = useState(null);
+ 
 
   const passwordHandler = (event) => {
     setEnteredPassword(event.target.value);
@@ -33,6 +35,7 @@ const ProfileForm = () => {
       .then((response) => {
         if (response.ok) {
           setEnteredPassword("");
+         
         } else {
           return response.json().then((data) => {
             setError(" weak password.");

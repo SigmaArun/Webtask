@@ -3,34 +3,45 @@ import axios from "axios";
 import CartContext from "./CartContext";
 import AuthContext from "./AuthContext";
 
+const sanitizeEmail = (email) => {
+  return email.replace(/[@.]/g, "");
+};
+
+const fetchCartItems = async (email,setItems, logout, history) => {
+  const sanitizedEmail = sanitizeEmail(email);
+  try {
+    const response = await axios.get(`https://crudcrud.com/api/07b2401bfc4c4ddf950e1671f7eb99b8/cart${sanitizedEmail}`);
+    const fetchedItems = response.data.map(item => ({
+      ...item,
+      quantity: item.quantity || 1 
+    }));
+    setItems(fetchedItems);
+  } catch (error) {
+    if (error.response && error.response.status === 401) {
+      // Token expired or unauthorized, my site will log out the user
+      logout();
+      alert("Session expired. Please log in again.");
+      history.push("/Webtask/home");
+    } else {
+      console.error('Failed to fetch cart items', error);
+    }
+  }
+};
+
 const CartProvider = (props) => {
   const [isOpenCart, setOpenCart] = useState(false);
   const [items, setItems] = useState([]);
   const authCtx = useContext(AuthContext);
 
-  const sanitizeEmail = (email) => {
-    return email.replace(/[@.]/g, "");
-  };
+  
 
   useEffect(() => {
     if (authCtx.userEmail) {
-      fetchCartItems(authCtx.userEmail);
+      fetchCartItems(authCtx.userEmail,setItems);
     }
   }, [authCtx.userEmail]);
 
-  const fetchCartItems = async (email) => {
-    const sanitizedEmail = sanitizeEmail(email);
-    try {
-      const response = await axios.get(`https://crudcrud.com/api/07b2401bfc4c4ddf950e1671f7eb99b8/cart${sanitizedEmail}`);
-      const fetchedItems = response.data.map(item => ({
-        ...item,
-        quantity: item.quantity || 1 
-      }));
-      setItems(fetchedItems);
-    } catch (error) {
-      console.error('Failed to fetch cart items', error);
-    }
-  };
+ 
 
   const openCartHandler = () => {
     setOpenCart(true);

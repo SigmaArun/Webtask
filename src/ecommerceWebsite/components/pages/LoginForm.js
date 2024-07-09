@@ -1,6 +1,7 @@
 import React, { useState ,useContext} from "react";
 import { Container, Row, Col, Form, Alert, Button } from "react-bootstrap";
 import AuthContext from "../store/AuthContext";
+import { useHistory } from 'react-router-dom';
 
 const LoginForm = () => {
 
@@ -8,6 +9,7 @@ const LoginForm = () => {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
   const [error, setError] = useState(null);
+  const history = useHistory();
 
   const emailHandler = (event) => {
     setEnteredEmail(event.target.value);
@@ -42,6 +44,7 @@ const LoginForm = () => {
             authCtx.login(data.idToken,enteredEmail); // Log in with the received idToken i removed logging token details 
             setEnteredEmail("");
             setEnteredPassword("");
+            history.push('/Webtask/store');
           });
       
         } else {
